@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <!--link rel="icon" href="favicon.ico"-->
+	<link rel="stylesheet" href="css/bootstrap.min.css">	
+	<link rel="stylesheet" type="text/css" href="css/kaforad-converter.css">
+	
+	<script src="kaforad-converter.js"></script>
+	<script src="kaf-idb.js"></script>
+		
+
+    <title>Currency Converter</title>
+  </head>
+  <body onload="cConverter.convertCurrency()">
+	  <div class="container">
+  <div class="row">
+		 		 			<div  class="col-md-4">
+		 		 				<img src="images/my_logo.png" class="my-logo responsive-image" alt="logo"/>
+		 		 			</div>
+		 		 			<div class="col-md-8 text-right">
+		 		 				<h3 class="text-uppercase">Currency Converter</h3>
+		 		 				<h5></h5>
+		 		 			</div>
+
+		 		 		</div>
+		 				<hr>
+	  
+	<section class="container">
+<form id="frmConvert" name="myfrmConvert" action="" method="post">
+		<div class="row form-group">
+			
+				<div class="col-8">			
+				
+					<label for="amount">Amount to Convert:</label>
+					<input type="number" class="form-control" id="amount" name="amt">
+				
+				</div>
+				
+			</div>
+			
+			<div class="row form-group">
+				<div class="col-4 valignBottom">
+					<!--Select currency to convert from -->
+					<label for="convertFrom">Convert From</label>
+					<select class="form-control" id="convertFrom">
+									  
+					</select>
+				</div>
+				<div class="col-4" valignBottom>
+				<!--Select currency to convert into -->
+					<label for="convertTo">Convert To</label>
+					<select class="form-control" id="convertTo">
+					  				  
+					</select>
+				</div>
+				<div class="col-4" valignBottom>
+				  <div><p/></div>
+				  <div><p/></div><p/><input class="btn btn-primary" type="button" value="Convert"  id="btnConvert" />
+				  
+				</div>
+			</div>
+		
+		</form>
+	</section>
+	<section class="container" id="resultDisplay">
+		<div class="row card" style="width: 60rem;">
+			  <div class="card-body col-8">
+			    <h4 class="card-title">Conversion Rate -  Result</h4>
+			    <h5 class="card-title" id="countryCurrency"> </h5>
+			    <h6 class="card-subtitle mb-2 text-muted" id="conversionCurrency"></h6>
+			    <p class="card-text" id="conversionRate">
+			    <h6 class="card-subtitle mb-2 text-muted" id="reverseConversion"></h6>
+			    <p class="card-text" id="reverseRate">				</p>
+			    <p class="error"></p>
+			 
+			  </div>
+		</div>
+		
+	</section>
+	<footer class="footer">
+		<div class="container">
+			<span class="text-muted">currency converter ALC-CHALLENGE 2018.</span>
+		</div>
+	</footer>
+	
+  
+</div>
+</body>
+</html>
