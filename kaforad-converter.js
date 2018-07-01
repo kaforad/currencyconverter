@@ -1,3 +1,10 @@
+//#7DaysofCodeChallenge
+//TRACK:Mobile Web Specialist Track
+//AUTHOR: Oyedoyin Agbaje
+//PROJECT NAME:Currency Converter
+//MAIN script
+//API USED:Freecurrencyconverterapi (https://www.currencyconverterapi.com/)
+
 class CurrencyConverter{
 	constructor(){ 
 	    //set default value for required data

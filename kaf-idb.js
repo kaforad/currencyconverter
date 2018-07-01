@@ -1,3 +1,9 @@
+//#7DaysofCodeChallenge
+//TRACK:Mobile Web Specialist Track
+//AUTHOR: Oyedoyin Agbaje
+//PROJECT NAME:Currency Converter
+//idb script
+//API USED:Freecurrencyconverterapi (https://www.currencyconverterapi.com/)
 
 window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || 
 window.msIndexedDB;
@@ -22,13 +28,16 @@ openIDB.onerror = function(error){
 		console.log('IDB Error'+ error.target.errorCode);
 	}
 openIDB.onsuccess = function(data){
-		 currencyDb = openIDB.result;
-		 currencyTx = currencyDb.transaction["currencyStorageObj","readwrite"];
+		 currencyDb = data.target.result;//openIDB.result;
+		 //currencyTx = currencyDb.transaction["currencyStorageObj","readwrite"];
 		 // let currencyStorageObj = currencyTx.objectStore("currencyRate");
-		  currencyStorageObj = currencyTx.createObjectStore("currencyRate", { keyPath: "id" });
+		 // currencyStorageObj = currencyTx.createObjectStore("currencyRate", { keyPath: "id" });
+		  currencyStorageObj = currencyDb.createObjectStore("currencyRate", { keyPath: "id" });
 		 currencyIndex =currencyStorageObj.index("id");
 		 currencyIndex =currencyStorageObj.index("rate");
-
+		 //replacing tx above
+		 let currencyTx = currencyDb.transaction("currencyRates", "readwrite").currencyStorageObj("currencyRates");
+    		let = currencyTx.add(storeMyData);
 		 openIDB.onerror =function(error){
 		 	console.log(error.target.errorCode);
 		 }

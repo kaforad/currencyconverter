@@ -1,3 +1,10 @@
+//#7DaysofCodeChallenge
+//TRACK:Mobile Web Specialist Track
+//AUTHOR: Oyedoyin Agbaje
+//PROJECT NAME:Currency Converter
+//SERVICE WORKER FILE
+//API USED:Freecurrencyconverterapi (https://www.currencyconverterapi.com/)
+
 var myCache = 'kafConverter';
 var cacheAssets = ['/','index.html','images/','css/bootstrap.min.css','css/kaforad-converter.css','kaforad-converter.js'];//,'/scripts/',''/images','/images/','/css/',];
 //dat cache
