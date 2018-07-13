@@ -15,6 +15,27 @@ class CurrencyConverter{
 		
 	}
 
+bindData(results,bindToObject){
+//pass json data and dropdown name
+//bind data to drop down	
+
+	for(let key in results){
+		
+						
+				let selectCurrency = document.getElementById(`${bindToObject}`);
+ 				let currencyOption = document.createElement('option');
+ 				currencyOption.setAttribute('value', results[key].id);
+ 				currencyOption.setAttribute('label', results[key].currencyName); 
+ 				currencyOption.setAttribute('text',  results[key].currencyName);
+ 				//I had to use .innerHTML to handle label attribute display for mozilla
+ 				currencyOption.innerHTML = results[key].currencyName;
+  				selectCurrency.appendChild(currencyOption);
+  				
+				}   
+
+		return;
+}
+
 convertCurrency(){
 	 	// this variables stores returned values from the API
 	   	let fromVal =0;
@@ -52,7 +73,7 @@ convertCurrency(){
 					   currencykey[i] =key;						
 						i =i+1;
 					})
-					//since only two values with be returned at any point in time with the free API version
+					//since only two values will be returned at any point in time with the free API version
 					// I am safe to reference index 0 and 1 , index 0 for where I am converting from
 					// index 1 for reverse conversion
 					let fromVal=rateValue.results[currencykey[0]].fr;
@@ -87,56 +108,29 @@ convertCurrency(){
 
 	}
 
-preLoadCurrency(){
-	//I should refactor this , 	put the content of my loop in another method/funciton and pass my dropdown id.
-	//I should considering refactoring when application working well. for now....let me meet my target
+
+
+}
+
+
+
+
+let cConverter = new CurrencyConverter();
+
+(function(){
 	fetch('https://free.currencyconverterapi.com/api/v5/currencies', {method: 'get'})
 			
 				.then((currencies) => currencies.json()) //get API currencies into json
 				 // Get all currencies from API and manipulate
 				.then(function(allCurrencies) {
-						//console.log(allCurrencies);
-		             // Looping through all currencies using for in
-		             for(let key in allCurrencies.results){
-				// bind currency to drop down element(currency From) of the index.html
-				let selectCurrency = document.getElementById('convertFrom');
- 				let currencyOption = document.createElement('option');
- 				currencyOption.setAttribute('value', allCurrencies.results[key].id);
- 				currencyOption.setAttribute('label', allCurrencies.results[key].currencyName); 
- 				currencyOption.setAttribute('text', allCurrencies.results[key].currencyName);
- 				//I had to use .innerHTML to handle label attribute display for mozilla
- 				currencyOption.innerHTML = allCurrencies.results[key].currencyName;
-  				selectCurrency.appendChild(currencyOption);
-  				
-				}   
+						
+		             //call funciton - binding currency to drop down
+		              cConverter.bindData(allCurrencies.results,'convertFrom') ;
+		              cConverter.bindData(allCurrencies.results,'convertTo') ;
+		         })
+}) ();
 
-				for(let key in allCurrencies.results){
-				// bind currency to drop down element(currency From) of the index.html
-				let selectCurrency = document.getElementById('convertTo');
- 				let currencyOption = document.createElement('option');
- 				currencyOption.setAttribute('value', allCurrencies.results[key].id);
- 				currencyOption.setAttribute('label', allCurrencies.results[key].currencyName); 
- 				currencyOption.setAttribute('text', allCurrencies.results[key].currencyName);
- 				//I had to use .innerHTML to handle label attribute display for mozilla
- 				currencyOption.innerHTML = allCurrencies.results[key].currencyName;
-  				selectCurrency.appendChild(currencyOption);
-  				
-				}   
-				
-			})
-		 .catch(function(error) {
-    // Error issues to be handled here
-     throw Error(error.statusText);
-  });   
-   	
-}
-
-
-}
-
-let cConverter = new CurrencyConverter();
-cConverter.preLoadCurrency();
-//registering my service worker
+//registering  service worker
 if('serviceWorker' in navigator) {
   navigator.serviceWorker
            .register('service-worker.js')
